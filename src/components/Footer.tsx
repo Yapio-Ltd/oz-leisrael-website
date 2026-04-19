@@ -30,13 +30,13 @@ function Footer() {
   return (
     <footer className="bg-gray-100 text-gray-900 border-t border-gray-200">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           {/* Logo and Description */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center mb-4">
               <Image
                 src="/images/logo.png?v=2"
-                alt="Oz LeIsrael"
+                alt="Logo Oz LeIsrael — Mekhina Torah et Tsahal à Haïfa"
                 width={40}
                 height={40}
                 className="mr-3"
@@ -44,9 +44,22 @@ function Footer() {
               />
               <span className="font-display text-xl font-bold">Oz LeIsrael</span>
             </div>
-            <p className="text-gray-600 mb-4">
+            <p className="text-gray-600 mb-2">
               {t('hero.subtitle')}
             </p>
+            <address
+              className="text-sm text-gray-500 not-italic mb-4"
+              itemScope
+              itemType="https://schema.org/EducationalOrganization"
+            >
+              <span itemProp="name" className="sr-only">Oz LeIsrael — Mekhina Tsahal</span>
+              <span itemProp="addressLocality">Haïfa</span>,{' '}
+              <span itemProp="addressCountry">Israël</span>
+              {' · '}
+              <a href="https://wa.me/972585767105" itemProp="telephone" className="hover:underline">
+                +972 58 576 7105
+              </a>
+            </address>
             
             {/* Partner Logo */}
             <div className="mt-6">
@@ -79,8 +92,21 @@ function Footer() {
             </ul>
           </div>
 
-          {/* Social Links */}
+          {/* SEO Links */}
           <div>
+            <h3 className="font-semibold text-lg mb-4">Ressources</h3>
+            <ul className="space-y-2">
+              <li><Link href={`/${homeHref.split('/')[1]}/mekhina-armee`} className="text-gray-600 hover:text-primary-600 transition-colors duration-200 text-sm">Mekhina pour l&apos;armée</Link></li>
+              <li><Link href={`/${homeHref.split('/')[1]}/torah-et-armee`} className="text-gray-600 hover:text-primary-600 transition-colors duration-200 text-sm">Torah et armée</Link></li>
+              <li><Link href={`/${homeHref.split('/')[1]}/sayerot-preparation`} className="text-gray-600 hover:text-primary-600 transition-colors duration-200 text-sm">Préparation Sayerot</Link></li>
+              <li><Link href={`/${homeHref.split('/')[1]}/preparation-tsahal-francophone`} className="text-gray-600 hover:text-primary-600 transition-colors duration-200 text-sm">Tsahal francophone</Link></li>
+              <li><Link href={`/${homeHref.split('/')[1]}/faq`} className="text-gray-600 hover:text-primary-600 transition-colors duration-200 text-sm">FAQ</Link></li>
+              <li><Link href={`/${homeHref.split('/')[1]}/blog`} className="text-gray-600 hover:text-primary-600 transition-colors duration-200 text-sm">Blog</Link></li>
+            </ul>
+          </div>
+
+          {/* Social Links */}
+          <div className="hidden md:block">
             <h3 className="font-semibold text-lg mb-4">Suivez-nous sur Instagram</h3>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (

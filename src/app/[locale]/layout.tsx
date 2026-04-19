@@ -6,7 +6,7 @@ import {
   SITE_URL,
   PAGE_META,
   canonicalUrl,
-  LOCALES,
+  buildAlternates,
   type Locale,
 } from '@/lib/seo';
 
@@ -35,12 +35,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const locale = (params.locale || 'fr') as Locale;
   const meta = PAGE_META.home[locale];
-
   const canonical = canonicalUrl('', locale);
-  const languages: Record<string, string> = {};
-  LOCALES.forEach((l) => {
-    languages[l] = canonicalUrl('', l);
-  });
+  const languages = buildAlternates('');
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -60,11 +56,12 @@ export async function generateMetadata({
     },
     alternates: {
       canonical,
-      languages: languages,
+      languages,
     },
     openGraph: {
       type: 'website',
       locale: locale === 'fr' ? 'fr_FR' : 'en_US',
+      alternateLocale: locale === 'fr' ? 'en_US' : 'fr_FR',
       url: canonical,
       siteName: 'Oz LeIsrael',
       title: meta.title,
@@ -74,7 +71,7 @@ export async function generateMetadata({
           url: meta.ogImage || `${SITE_URL}/images/cover.png`,
           width: 1200,
           height: 630,
-          alt: 'Oz LeIsrael',
+          alt: 'Oz LeIsrael — Mekhina à Haïfa : Torah et Tsahal',
         },
       ],
     },
@@ -89,12 +86,9 @@ export async function generateMetadata({
       follow: true,
       googleBot: { index: true, follow: true },
     },
-    viewport: { width: 'device-width', initialScale: 1, viewportFit: 'cover' },
-    themeColor: '#000000',
     verification: {
-      // À remplir si vous utilisez Google Search Console ou Bing
-      // google: 'xxx',
-      // yandex: 'xxx',
+      // Ajouter votre code Google Search Console ici :
+      // google: 'VOTRE_CODE_GSC',
     },
   };
 }

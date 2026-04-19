@@ -5,42 +5,19 @@ import { useInView } from 'react-intersection-observer';
 import { useI18n } from '@/lib/i18n';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaBook, FaDumbbell, FaArrowRight } from 'react-icons/fa';
+import { FaBook, FaDumbbell, FaArrowRight, FaWhatsapp } from 'react-icons/fa';
 import { Phone, Users, CheckCircle, GraduationCap, Target } from 'lucide-react';
 
 export default function ApproachPage() {
   const { t } = useI18n();
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   const processSteps = [
-    {
-      number: '01',
-      key: 'step1',
-      Icon: Phone,
-    },
-    {
-      number: '02',
-      key: 'step2',
-      Icon: Users,
-    },
-    {
-      number: '03',
-      key: 'step3',
-      Icon: CheckCircle,
-    },
-    {
-      number: '04',
-      key: 'step4',
-      Icon: GraduationCap,
-    },
-    {
-      number: '05',
-      key: 'step5',
-      Icon: Target,
-    },
+    { number: '01', key: 'step1', Icon: Phone },
+    { number: '02', key: 'step2', Icon: Users },
+    { number: '03', key: 'step3', Icon: CheckCircle },
+    { number: '04', key: 'step4', Icon: GraduationCap },
+    { number: '05', key: 'step5', Icon: Target },
   ];
 
   return (
@@ -54,7 +31,7 @@ export default function ApproachPage() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <h1 className="heading-1 mb-4">{t('approach.title')}</h1>
+            <h1 className="heading-1 mb-4">Torah et Armée : Notre Approche pour Intégrer Tsahal</h1>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto">
               {t('approach.intro')}
             </p>
@@ -62,9 +39,49 @@ export default function ApproachPage() {
         </div>
       </section>
 
+      {/* Intro SEO */}
+      <section className="section-padding bg-white">
+        <div className="container max-w-4xl mx-auto">
+          <div className="prose prose-lg max-w-none text-gray-700">
+            <p>
+              L&apos;approche d&apos;<strong>Oz LeIsrael</strong> repose sur une conviction
+              profonde : la Torah et l&apos;armée ne s&apos;opposent pas, ils se complètent.
+              Le soldat qui a ancré son identité dans la Torah est plus fort, plus résilient et
+              plus engagé que celui qui ne l&apos;a pas fait. C&apos;est cette philosophie qui
+              guide chaque journée de notre <strong>mekhina à Haïfa</strong>.
+            </p>
+            <p>
+              Notre programme, conçu pour les jeunes francophones souhaitant intégrer{' '}
+              <strong>Tsahal</strong>, alterne entre deux grands piliers :{' '}
+              <strong>le Kodesh</strong> (l&apos;étude de la Torah) et{' '}
+              <strong>le Hol</strong> (la préparation physique et mentale). Ces deux dimensions
+              ne sont pas séparées — elles se nourrissent mutuellement pour former un soldat
+              d&apos;exception, capable d&apos;intégrer les{' '}
+              <strong>Sayerot et unités d&apos;élite de Tsahal</strong>.
+            </p>
+            <p>
+              La <strong>mekhina Oz LeIsrael</strong> à Haïfa est reconnue comme la référence
+              francophone en matière de préparation à l&apos;armée israélienne. Sous la
+              direction du <strong>Rav Zini</strong> et en partenariat avec la{' '}
+              <a
+                href="https://orvishua.net/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary-600 hover:underline"
+              >
+                Yeshiva Or Vishua
+              </a>
+              , nous offrons un cadre exceptionnel qui allie exigence spirituelle et performance
+              physique.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Les Deux Piliers */}
-      <section className="section-padding">
+      <section className="section-padding bg-gray-50">
         <div className="container">
+          <h2 className="heading-2 text-center mb-12">Les deux piliers du programme</h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Kodesh */}
             <motion.div
@@ -77,7 +94,7 @@ export default function ApproachPage() {
               <div className="relative h-64">
                 <Image
                   src="/images/kodesh-study.jpeg"
-                  alt="Étude de la Torah"
+                  alt="Étude de la Torah à la Mekhina Oz LeIsrael — Kodesh"
                   fill
                   className="object-cover"
                 />
@@ -88,8 +105,15 @@ export default function ApproachPage() {
               </div>
               <div className="p-8">
                 <h2 className="heading-3 mb-4">{t('approach.kodesh.title')}</h2>
-                <p className="text-gray-700 mb-6">
+                <p className="text-gray-700 mb-4">
                   {t('approach.kodesh.description')}
+                </p>
+                <p className="text-gray-700 mb-6">
+                  L&apos;étude du Kodesh à Oz LeIsrael n&apos;est pas une simple formalité :
+                  c&apos;est le socle sur lequel repose toute la formation. Un jeune homme qui
+                  comprend pourquoi il sert Tsahal — ancré dans la Torah, l&apos;histoire du
+                  peuple juif et l&apos;amour d&apos;Israël — est infiniment plus motivé et
+                  résilient dans les moments difficiles de l&apos;armée.
                 </p>
                 <ul className="space-y-3">
                   <li className="flex items-start">
@@ -102,11 +126,15 @@ export default function ApproachPage() {
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary-600 mr-2">•</span>
-                    <span>Développement spirituel personnel</span>
+                    <span>Développement spirituel personnel avec le Rav Zini</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary-600 mr-2">•</span>
                     <span>Accompagnement par des rabbins expérimentés</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary-600 mr-2">•</span>
+                    <span>Compréhension des valeurs de la Torah dans le contexte militaire</span>
                   </li>
                 </ul>
               </div>
@@ -123,7 +151,7 @@ export default function ApproachPage() {
               <div className="relative h-64">
                 <Image
                   src="/images/hol-training.jpeg"
-                  alt="Entraînement physique"
+                  alt="Entraînement physique Kravi à la Mekhina Oz LeIsrael — préparation Tsahal"
                   fill
                   className="object-cover"
                 />
@@ -134,25 +162,36 @@ export default function ApproachPage() {
               </div>
               <div className="p-8">
                 <h2 className="heading-3 mb-4">{t('approach.hol.title')}</h2>
-                <p className="text-gray-700 mb-6">
+                <p className="text-gray-700 mb-4">
                   {t('approach.hol.description')}
+                </p>
+                <p className="text-gray-700 mb-6">
+                  Notre préparation physique est calibrée pour atteindre les standards des
+                  meilleures unités de Tsahal. L&apos;objectif : que chaque élève de la{' '}
+                  <strong>mekhina Oz LeIsrael</strong> arrive à l&apos;armée avec un niveau
+                  physique et mental qui lui ouvre les portes des{' '}
+                  <strong>Sayerot</strong> — les unités d&apos;élite de Tsahal.
                 </p>
                 <ul className="space-y-3">
                   <li className="flex items-start">
                     <span className="text-primary-600 mr-2">•</span>
-                    <span>Entraînement physique intensif quotidien</span>
+                    <span>Entraînement physique intensif quotidien (course, natation, musculation)</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary-600 mr-2">•</span>
-                    <span>Krav Maga et techniques de combat</span>
+                    <span>Krav Maga et techniques de combat rapproché</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary-600 mr-2">•</span>
-                    <span>Préparation mentale et leadership</span>
+                    <span>Préparation mentale et leadership militaire</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary-600 mr-2">•</span>
-                    <span>Simulation des tests d&apos;unités d&apos;élite</span>
+                    <span>Simulation des tests de sélection des unités d&apos;élite</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary-600 mr-2">•</span>
+                    <span>Randonnées et sorties de terrain en Israël</span>
                   </li>
                 </ul>
               </div>
@@ -162,7 +201,7 @@ export default function ApproachPage() {
       </section>
 
       {/* Process Section */}
-      <section ref={ref} className="section-padding bg-gray-50">
+      <section ref={ref} className="section-padding bg-white">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -171,12 +210,14 @@ export default function ApproachPage() {
             className="text-center mb-12"
           >
             <h2 className="heading-2 mb-4">{t('approach.process.title')}</h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Rejoindre la Mekhina Oz LeIsrael est simple. Voici les étapes pour intégrer notre
+              programme de préparation à Tsahal à Haïfa.
+            </p>
           </motion.div>
 
           <div className="max-w-2xl mx-auto">
             <div className="relative">
-
-              {/* Steps */}
               <div className="space-y-6">
                 {processSteps.map((step, index) => (
                   <motion.div
@@ -186,19 +227,16 @@ export default function ApproachPage() {
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     className="flex items-center gap-5"
                   >
-                    {/* Numéro + Icône */}
                     <div className="flex-shrink-0 relative">
                       <div className="w-14 h-14 bg-primary-50 border-2 border-primary-200 rounded-full flex items-center justify-center relative z-10">
                         <step.Icon className="w-6 h-6 text-primary-600" strokeWidth={1.5} />
                       </div>
-                      {/* Ligne de connexion */}
                       {index < processSteps.length - 1 && (
                         <div className="absolute top-14 left-1/2 -translate-x-1/2 w-0.5 h-6 bg-primary-200" />
                       )}
                     </div>
-                    
-                    {/* Contenu */}
-                    <div className="flex-1 bg-white rounded-xl p-5 shadow-sm border border-gray-100 hover:shadow-md hover:border-primary-100 transition-all duration-300">
+
+                    <div className="flex-1 bg-gray-50 rounded-xl p-5 shadow-sm border border-gray-100 hover:shadow-md hover:border-primary-100 transition-all duration-300">
                       <div className="flex items-center gap-3 mb-1">
                         <span className="text-xs font-semibold text-primary-600 bg-primary-50 px-2 py-0.5 rounded-full">
                           Étape {step.number}
@@ -224,10 +262,42 @@ export default function ApproachPage() {
             className="text-center mt-12"
           >
             <p className="text-xl font-semibold mb-6">{t('approach.start')}</p>
-            <Link href="/contact" className="btn-primary">
-              {t('contact.submit')} <FaArrowRight className="ml-2" />
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/contact" className="btn-primary flex items-center justify-center">
+                {t('contact.submit')} <FaArrowRight className="ml-2" />
+              </Link>
+              <a
+                href="https://wa.me/972585767105"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-green-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors flex items-center justify-center gap-2"
+              >
+                <FaWhatsapp size={18} />
+                Nous contacter sur WhatsApp
+              </a>
+            </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Links */}
+      <section className="section-padding bg-gray-50">
+        <div className="container max-w-4xl mx-auto">
+          <h2 className="heading-2 text-center mb-8">Pages connexes</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Link href="/fr/mekhina-armee" className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow border border-gray-100">
+              <h3 className="font-bold text-lg text-primary-600 mb-2">Mekhina pour l&apos;armée</h3>
+              <p className="text-gray-600 text-sm">Tout savoir sur la mekhina et ses avantages avant Tsahal.</p>
+            </Link>
+            <Link href="/fr/preparation-tsahal-francophone" className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow border border-gray-100">
+              <h3 className="font-bold text-lg text-primary-600 mb-2">Francophones et Tsahal</h3>
+              <p className="text-gray-600 text-sm">Guide spécial pour les francophones qui veulent servir en Israël.</p>
+            </Link>
+            <Link href="/fr/sayerot-preparation" className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow border border-gray-100">
+              <h3 className="font-bold text-lg text-primary-600 mb-2">Préparation aux Sayerot</h3>
+              <p className="text-gray-600 text-sm">Comment intégrer les unités d&apos;élite de Tsahal depuis la mekhina.</p>
+            </Link>
+          </div>
         </div>
       </section>
     </div>

@@ -7,6 +7,25 @@ import Image from 'next/image';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
 
+const galleryAlts = [
+  'Étudiants de la Mekhina Oz LeIsrael en entraînement physique à Haïfa',
+  'Cours de Torah à la Mekhina Oz LeIsrael — préparation spirituelle avant Tsahal',
+  'Fraternité et vie en communauté à la Mekhina Oz LeIsrael',
+  'Entraînement Kravi à la Mekhina Oz LeIsrael — préparation aux Sayerot de Tsahal',
+  'Étude du Talmud en groupe — Kodesh à la Mekhina Oz LeIsrael Haïfa',
+  'Préparation physique intensive à la Mekhina Oz LeIsrael — Torah et Tsahal',
+  'Journée type à la Mekhina Oz LeIsrael : Torah le matin, sport l'après-midi',
+  'Sortie de terrain de la Mekhina Oz LeIsrael — préparation militaire à Haïfa',
+  'Communauté francophone de la Mekhina Oz LeIsrael — jeunes olim de France',
+  'Entraînement collectif à la Mekhina Oz LeIsrael — unités d'élite Tsahal',
+  'Shiur du Rav Zini à la Mekhina Oz LeIsrael — vision Torah et armée',
+  'La Mekhina Oz LeIsrael en action — préparation armée israélienne francophone',
+];
+
+function getImageAlt(index: number): string {
+  return galleryAlts[index] || `Mekhina Oz LeIsrael Haïfa — Torah et préparation Tsahal`;
+}
+
 // Images de la galerie avec layout bento
 const galleryImages = [
   { src: '/images/gallery2/IMG_9211.jpg', span: 'col-span-2 row-span-2' },
@@ -115,7 +134,7 @@ function GallerySection() {
               >
                 <Image
                   src={image.src}
-                  alt={`Oz LeIsrael - Photo ${index + 1}`}
+                  alt={getImageAlt(index)}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                   sizes="(max-width: 768px) 50vw, 25vw"
@@ -193,7 +212,7 @@ function GallerySection() {
             >
               <Image
                 src={galleryImages[selectedIndex].src}
-                alt={`Oz LeIsrael - Photo ${selectedIndex + 1}`}
+                alt={getImageAlt(selectedIndex)}
                 fill
                 className="object-contain"
                 sizes="90vw"

@@ -7,7 +7,7 @@ import { useI18n } from '@/lib/i18n';
 import { useState, useEffect, memo, useMemo } from 'react';
 
 function HeroSection() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -43,13 +43,14 @@ function HeroSection() {
     transition: { duration: 1.5, repeat: Infinity }
   }), []);
 
+  const contactHref = `/${locale}/contact`;
+
   return (
     <section className="relative h-screen w-full overflow-hidden">
-      {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/cover.jpg"
-          alt="Oz LeIsrael"
+          alt="Étudiants de la Mekhina Oz LeIsrael en préparation physique et étude de la Torah à Haïfa"
           fill
           priority
           quality={85}
@@ -58,40 +59,60 @@ function HeroSection() {
           placeholder="blur"
           blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
         />
-        
-        {/* Overlay sombre pour lisibilité */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/60 to-black/70" />
       </div>
 
-      {/* Content */}
       <div className="relative z-20 h-full flex items-center justify-center text-white">
         <div className="text-center px-6 max-w-6xl">
           <motion.h1
             {...titleVariants}
-            className="text-6xl md:text-8xl lg:text-9xl font-extrabold font-display mb-8 tracking-tight text-white"
-            style={{ 
+            className="font-extrabold font-display mb-4 tracking-tight text-white"
+            style={{
               textShadow: '0 4px 20px rgba(0,0,0,0.9), 0 0 40px rgba(0,0,0,0.6)',
               letterSpacing: '-0.02em'
             }}
           >
-            OZ LEISRAEL
+            <span
+              className="block text-6xl md:text-8xl lg:text-9xl"
+              aria-hidden="true"
+            >
+              OZ LEISRAEL
+            </span>
+            <span className="sr-only">
+              Oz LeIsrael — Mekhina pour l&apos;armée à Haïfa — Torah et Tsahal
+            </span>
           </motion.h1>
-          
+
           <motion.p
             {...subtitleVariants}
-            className="text-2xl md:text-4xl lg:text-5xl mb-12 font-light max-w-4xl mx-auto leading-tight text-white"
-            style={{ 
+            className="text-lg md:text-2xl mb-3 font-semibold text-white/90 tracking-wider uppercase"
+            style={{ textShadow: '0 2px 10px rgba(0,0,0,0.9)', letterSpacing: '0.12em' }}
+          >
+            Mekhina · Torah · Tsahal · Haïfa
+          </motion.p>
+
+          <motion.p
+            {...subtitleVariants}
+            className="text-xl md:text-3xl lg:text-4xl mb-12 font-light max-w-4xl mx-auto leading-tight text-white"
+            style={{
               textShadow: '0 2px 15px rgba(0,0,0,0.9)',
               fontWeight: '300'
             }}
           >
-            Là où la Torah forge l&apos;esprit, le sport renforce le corps,<br />
+            Là où la Torah forge l&apos;esprit, le sport renforce le corps,
+            <br />
             <span className="font-semibold">et Israël révèle ta mission</span>
           </motion.p>
 
+          <p className="sr-only">
+            Programme de Mekhina francophone à Haïfa : étude approfondie de la Torah et
+            préparation physique &amp; mentale pour intégrer Tsahal et viser les unités d&apos;élite
+            (Sayerot). Mekhina armée, thora armée, mékhina tsahal.
+          </p>
+
           <motion.div {...buttonVariants}>
-            <Link 
-              href="/contact" 
+            <Link
+              href={contactHref}
               className="inline-block bg-white text-gray-900 px-10 py-5 text-xl font-semibold tracking-wide uppercase hover:bg-gray-100 transition-all duration-300 shadow-2xl"
               style={{ letterSpacing: '0.1em' }}
             >
@@ -101,7 +122,6 @@ function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
       <motion.div
         {...scrollIndicatorVariants}
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white"

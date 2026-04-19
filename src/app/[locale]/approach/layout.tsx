@@ -1,11 +1,5 @@
 import type { Metadata } from 'next';
-import {
-  SITE_URL,
-  PAGE_META,
-  canonicalUrl,
-  LOCALES,
-  type Locale,
-} from '@/lib/seo';
+import { SITE_URL, PAGE_META, canonicalUrl, buildAlternates, type Locale } from '@/lib/seo';
 
 export async function generateMetadata({
   params,
@@ -16,10 +10,7 @@ export async function generateMetadata({
   const meta = PAGE_META.approach[locale];
   const path = '/approach';
   const canonical = canonicalUrl(path, locale);
-  const languages: Record<string, string> = {};
-  LOCALES.forEach((l) => {
-    languages[l] = canonicalUrl(path, l);
-  });
+  const languages = buildAlternates(path);
 
   return {
     title: meta.title,
@@ -30,9 +21,9 @@ export async function generateMetadata({
       title: meta.title,
       description: meta.description,
       url: canonical,
-      images: [{ url: meta.ogImage || `${SITE_URL}/images/cover.png`, width: 1200, height: 630, alt: 'Oz LeIsrael' }],
+      images: [{ url: meta.ogImage || `${SITE_URL}/images/cover.png`, width: 1200, height: 630, alt: 'Torah et armée — approche Oz LeIsrael' }],
     },
-    twitter: { title: meta.title, description: meta.description },
+    twitter: { title: meta.title, description: meta.description, images: [meta.ogImage || `${SITE_URL}/images/cover.png`] },
   };
 }
 

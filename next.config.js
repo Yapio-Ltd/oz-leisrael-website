@@ -1,10 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  
-  // Optimisation des images - Désactivée pour standalone build
+
+  // Images non optimisées pour le build standalone sur Render
   images: {
-    unoptimized: true, // CRITIQUE pour standalone sur Render
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'http',
@@ -16,37 +16,26 @@ const nextConfig = {
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-  
+
   // Compression
   compress: true,
-  
-  // Optimisation du build
+
+  // Minification SWC
   swcMinify: true,
-  
-  // Optimisation des polices
-  optimizeFonts: true,
-  
-  // Configuration de production pour éviter les timeouts
+
+  // Build en mode standalone pour Render
   output: 'standalone',
-  
-  // Headers de sécurité et performance
+
+  // Headers de sécurité, performance et SEO
   async headers() {
     return [
       {
         source: '/:path*',
         headers: [
-          {
-            key: 'X-DNS-Prefetch-Control',
-            value: 'on'
-          },
-          {
-            key: 'X-Frame-Options',
-            value: 'SAMEORIGIN'
-          },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff'
-          },
+          { key: 'X-DNS-Prefetch-Control', value: 'on' },
+          { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
         ],
       },
       {
@@ -54,8 +43,7 @@ const nextConfig = {
         headers: [
           {
             key: 'Cache-Control',
-            // En développement : pas de cache. En production : cache long terme
-            value: process.env.NODE_ENV === 'production' 
+            value: process.env.NODE_ENV === 'production'
               ? 'public, max-age=31536000, immutable'
               : 'no-cache, no-store, must-revalidate',
           },
@@ -64,23 +52,36 @@ const nextConfig = {
       {
         source: '/videos/:path*',
         headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
         ],
       },
       {
         source: '/fonts/:path*',
         headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
+      {
+        source: '/sitemap.xml',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=86400' },
+          { key: 'X-Robots-Tag', value: 'noindex' },
+        ],
+      },
+      {
+        source: '/sitemap-images.xml',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=86400' },
+        ],
+      },
+      {
+        source: '/robots.txt',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=86400' },
         ],
       },
     ];
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

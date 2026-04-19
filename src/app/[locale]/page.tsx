@@ -1,44 +1,21 @@
-'use client';
-
-import { useState, lazy, Suspense } from 'react';
 import dynamic from 'next/dynamic';
-import VideoIntro from '@/components/VideoIntro';
 import HeroSection from '@/components/home/HeroSection';
+import VideoIntroOverlay from '@/components/VideoIntroOverlay';
 
-// Lazy loading des sections non critiques
-const PillarsSection = dynamic(() => import('@/components/home/PillarsSection'), {
-  loading: () => <div className="h-screen flex items-center justify-center">Chargement...</div>,
-  ssr: true,
-});
-
-const MissionSection = dynamic(() => import('@/components/home/MissionSection'), {
-  loading: () => <div className="h-screen flex items-center justify-center">Chargement...</div>,
-  ssr: true,
-});
-
-const CTASection = dynamic(() => import('@/components/home/CTASection'), {
-  loading: () => <div className="h-screen flex items-center justify-center">Chargement...</div>,
-  ssr: true,
-});
-
-const GallerySection = dynamic(() => import('@/components/home/GallerySection'), {
-  loading: () => <div className="h-96 flex items-center justify-center">Chargement...</div>,
-  ssr: true,
-});
+const PillarsSection = dynamic(() => import('@/components/home/PillarsSection'), { ssr: true });
+const MissionSection = dynamic(() => import('@/components/home/MissionSection'), { ssr: true });
+const CTASection = dynamic(() => import('@/components/home/CTASection'), { ssr: true });
+const GallerySection = dynamic(() => import('@/components/home/GallerySection'), { ssr: true });
 
 export default function HomePage() {
-  const [showContent, setShowContent] = useState(false);
-
   return (
     <>
-      {!showContent && <VideoIntro onComplete={() => setShowContent(true)} />}
-      <div style={{ display: showContent ? 'block' : 'none' }}>
-        <HeroSection />
-        <PillarsSection />
-        <MissionSection />
-        <GallerySection />
-        <CTASection />
-      </div>
+      <VideoIntroOverlay />
+      <HeroSection />
+      <PillarsSection />
+      <MissionSection />
+      <GallerySection />
+      <CTASection />
     </>
   );
 }
