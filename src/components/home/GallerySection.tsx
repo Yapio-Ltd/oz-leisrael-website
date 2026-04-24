@@ -14,10 +14,10 @@ const galleryAlts = [
   'Entraînement Kravi à la Mekhina Oz LeIsrael — préparation aux Sayerot de Tsahal',
   'Étude du Talmud en groupe — Kodesh à la Mekhina Oz LeIsrael Haïfa',
   'Préparation physique intensive à la Mekhina Oz LeIsrael — Torah et Tsahal',
-  'Journée type à la Mekhina Oz LeIsrael : Torah le matin, sport l'après-midi',
+  "Journée type à la Mekhina Oz LeIsrael : Torah le matin, sport l'après-midi",
   'Sortie de terrain de la Mekhina Oz LeIsrael — préparation militaire à Haïfa',
   'Communauté francophone de la Mekhina Oz LeIsrael — jeunes olim de France',
-  'Entraînement collectif à la Mekhina Oz LeIsrael — unités d'élite Tsahal',
+  "Entraînement collectif à la Mekhina Oz LeIsrael — unités d'élite Tsahal",
   'Shiur du Rav Zini à la Mekhina Oz LeIsrael — vision Torah et armée',
   'La Mekhina Oz LeIsrael en action — préparation armée israélienne francophone',
 ];
