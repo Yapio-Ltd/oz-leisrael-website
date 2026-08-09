@@ -328,8 +328,24 @@ export const JSON_LD_ORGANIZATION = {
   '@type': ['EducationalOrganization', 'LocalBusiness'],
   '@id': `${SITE_URL}#organization`,
   name: 'Oz LeIsrael',
-  alternateName: ['Oz L\'Israel', 'Oz Le Israel', 'מכינת עוז לישראל'],
+  alternateName: [
+    'Oz L\'Israel',
+    'Oz Le Israel',
+    'Oz LeIsrael Haïfa',
+    'Mekhina Oz LeIsrael',
+    'Oz LeIsrael Mekhina',
+    'מכינת עוז לישראל',
+    'עוז לישראל',
+  ],
   url: SITE_URL,
+  logo: {
+    '@type': 'ImageObject',
+    url: `${SITE_URL}/images/cover.png`,
+    width: 1200,
+    height: 630,
+  },
+  image: `${SITE_URL}/images/cover.png`,
+  telephone: '+972585767105',
   description:
     "Mekhina à Haïfa combinant étude approfondie de la Torah et préparation physique & mentale pour intégrer l'élite de Tsahal. Programme unique pour jeunes francophones.",
   keywords:
@@ -426,19 +442,10 @@ export function getJsonLdWebSite(locale: Locale) {
     publisher: { '@id': `${SITE_URL}#organization` },
     potentialAction: [
       {
-        '@type': 'SearchAction',
-        target: {
-          '@type': 'EntryPoint',
-          urlTemplate: `${SITE_URL}/fr/faq`,
-        },
-        'query-input': 'required name=search_term_string',
-      },
-      {
         '@type': 'ContactAction',
         target: {
           '@type': 'EntryPoint',
           urlTemplate: 'https://wa.me/972585767105',
-          actionPlatform: ['https://schema.org/WhatsApp'],
         },
       },
     ],

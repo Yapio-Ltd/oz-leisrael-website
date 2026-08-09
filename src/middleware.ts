@@ -21,12 +21,13 @@ export function middleware(request: NextRequest) {
     (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
   );
 
+  // Redirections permanentes (308) : indiquent à Google que /fr est l'URL définitive
   if (pathname === '/') {
-    return NextResponse.redirect(new URL('/fr', request.url));
+    return NextResponse.redirect(new URL('/fr', request.url), 308);
   }
 
   if (pathnameIsMissingLocale) {
-    return NextResponse.redirect(new URL(`/fr${pathname}`, request.url));
+    return NextResponse.redirect(new URL(`/fr${pathname}`, request.url), 308);
   }
 
   return NextResponse.next();
