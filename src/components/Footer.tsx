@@ -127,23 +127,49 @@ function Footer() {
 
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-gray-300">
-          <div className="flex flex-col md:flex-row justify-between items-center">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-600 text-sm">
               © {currentYear} Oz LeIsrael. {t('footer.rights')}.
             </p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <Link
-                href={`${homeHref}/privacy`}
-                className="text-gray-600 hover:text-primary-600 text-sm transition-colors duration-200"
+
+            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+              <a
+                href="https://www.yapio.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Powered by Yapio — ouvrir le site Yapio dans un nouvel onglet"
+                className="group inline-flex items-center gap-2 rounded-full border border-gray-200/80 bg-white/70 px-3 py-1.5 text-sm text-gray-500 shadow-sm backdrop-blur-sm transition-all duration-200 hover:border-gray-300 hover:bg-white hover:text-gray-800 hover:shadow"
               >
-                {t('footer.privacy')}
-              </Link>
-              <Link
-                href={`${homeHref}/terms`}
-                className="text-gray-600 hover:text-primary-600 text-sm transition-colors duration-200"
-              >
-                {t('footer.terms')}
-              </Link>
+                <span className="text-xs tracking-wide text-gray-400 transition-colors duration-200 group-hover:text-gray-500">
+                  Powered by
+                </span>
+                <Image
+                  src="/images/yapio-icon.webp"
+                  alt=""
+                  width={18}
+                  height={18}
+                  className="h-[18px] w-[18px] object-contain opacity-80 transition-opacity duration-200 group-hover:opacity-100"
+                  unoptimized
+                />
+                <span className="font-medium text-gray-700 transition-colors duration-200 group-hover:text-gray-900">
+                  Yapio
+                </span>
+              </a>
+
+              <div className="flex space-x-6">
+                <Link
+                  href={`${homeHref}/privacy`}
+                  className="text-gray-600 hover:text-primary-600 text-sm transition-colors duration-200"
+                >
+                  {t('footer.privacy')}
+                </Link>
+                <Link
+                  href={`${homeHref}/terms`}
+                  className="text-gray-600 hover:text-primary-600 text-sm transition-colors duration-200"
+                >
+                  {t('footer.terms')}
+                </Link>
+              </div>
             </div>
           </div>
         </div>
